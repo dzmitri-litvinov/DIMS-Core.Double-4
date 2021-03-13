@@ -1,9 +1,9 @@
 ﻿-- tests for functions --
 -- GetFullAge
-declare @BirthOfDate datetime;
+DECLARE @BirthOfDate DATETIME;
 
-set @BirthOfDate = '1993-10-28';
+SET @BirthOfDate = '1993-10-28';
 
-select dbo.GetFullAge(@BirthOfDate)
+SELECT dbo.GetFullAge(@BirthOfDate)
 
 -- add here next one function with sample how to chek it
