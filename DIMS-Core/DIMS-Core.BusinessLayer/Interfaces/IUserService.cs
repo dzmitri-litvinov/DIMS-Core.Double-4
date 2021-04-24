@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 namespace DIMS_Core.BusinessLayer.Interfaces
 {
     /// <summary>
-    /// This interface we use for working with Identity provider
+    ///     This interface we use for working with Identity provider
     /// </summary>
     public interface IUserService : IService
     {

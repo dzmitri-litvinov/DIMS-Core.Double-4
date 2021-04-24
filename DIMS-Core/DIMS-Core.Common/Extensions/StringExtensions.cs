@@ -2,12 +2,24 @@
 {
     public static class StringExtensions
     {
-        public static bool IsNull(this string value) => value is null;
+        public static bool IsNull(this string value)
+        {
+            return value is null;
+        }
 
-        public static bool IsNullOrEmpty(this string value) => string.IsNullOrEmpty(value);
+        public static bool IsNullOrEmpty(this string value)
+        {
+            return string.IsNullOrEmpty(value);
+        }
 
-        public static bool IsNullOrWhiteSpace(this string value) => string.IsNullOrWhiteSpace(value);
+        public static bool IsNullOrWhiteSpace(this string value)
+        {
+            return string.IsNullOrWhiteSpace(value);
+        }
 
-        public static string Format(this string value, params object[] args) => string.Format(value, args);
+        public static string Format(this string value, params object[] args)
+        {
+            return string.Format(value, args);
+        }
     }
 }

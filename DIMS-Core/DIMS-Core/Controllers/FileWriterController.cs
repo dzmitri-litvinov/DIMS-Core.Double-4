@@ -31,11 +31,11 @@ namespace DIMS_Core.Controllers
             }
             catch (Exception exception)
             {
-                _logger.LogError(exception, null);
+                Logger.LogError(exception, null);
             }
             finally
             {
-                _logger.LogInformation("stream was closed");
+                Logger.LogInformation("stream was closed");
                 streamWriter?.Close();
             }
 
@@ -46,6 +46,7 @@ namespace DIMS_Core.Controllers
                         });
         }
 
+        [HttpPost("tasks-write")]
         public async Task<IActionResult> TasksWriter(string data)
         {
             StreamWriter streamWriter = null;

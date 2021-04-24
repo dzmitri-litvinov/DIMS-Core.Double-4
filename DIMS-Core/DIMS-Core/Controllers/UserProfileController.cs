@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DIMS_Core.BusinessLayer.Interfaces;
 using DIMS_Core.BusinessLayer.Models;
-using DIMS_Core.BusinessLayer.Services;
 using DIMS_Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -28,7 +27,7 @@ namespace DIMS_Core.Controllers
         public async Task<ActionResult> Index()
         {
             var readOnlyModels = await _vUserProfileService.GetAll();
-            var viewModels = _mapper.Map<IEnumerable<VUserProfileViewModel>>(readOnlyModels);
+            var viewModels = Mapper.Map<IEnumerable<VUserProfileViewModel>>(readOnlyModels);
 
             return View(viewModels);
         }
@@ -38,7 +37,7 @@ namespace DIMS_Core.Controllers
         {
             var userProfile = await _userProfileService.GetById(id);
 
-            var userProfileViewModel = _mapper.Map<UserProfileViewModel>(userProfile);
+            var userProfileViewModel = Mapper.Map<UserProfileViewModel>(userProfile);
 
             return View(userProfileViewModel);
         }
@@ -58,7 +57,7 @@ namespace DIMS_Core.Controllers
                 return View(userProfileViewModel);
             }
 
-            var userProfileEntity = _mapper.Map<UserProfileModel>(userProfileViewModel);
+            var userProfileEntity = Mapper.Map<UserProfileModel>(userProfileViewModel);
 
             var userProfile = await _userProfileService.Create(userProfileEntity);
 
@@ -75,7 +74,7 @@ namespace DIMS_Core.Controllers
         {
             var userProfile = await _userProfileService.GetById(id);
 
-            var userProfileViewModel = _mapper.Map<UserProfileViewModel>(userProfile);
+            var userProfileViewModel = Mapper.Map<UserProfileViewModel>(userProfile);
 
             return View(userProfileViewModel);
         }
@@ -89,7 +88,7 @@ namespace DIMS_Core.Controllers
                 return View(userProfileViewModel);
             }
 
-            var userProfileEntity = _mapper.Map<UserProfileModel>(userProfileViewModel);
+            var userProfileEntity = Mapper.Map<UserProfileModel>(userProfileViewModel);
 
             var userProfile = await _userProfileService.Update(userProfileEntity);
 

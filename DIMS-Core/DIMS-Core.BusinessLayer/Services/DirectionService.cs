@@ -20,7 +20,7 @@ namespace DIMS_Core.BusinessLayer.Services
             var directions = UnitOfWork.DirectionRepository.GetAll();
 
             return await Mapper.ProjectTo<DirectionModel>(directions)
-                                .ToListAsync();
+                               .ToListAsync();
         }
 
         public async Task<DirectionModel> GetById(int id)

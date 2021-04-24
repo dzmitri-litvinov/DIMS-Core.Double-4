@@ -35,7 +35,7 @@ namespace DIMS_Core.BusinessLayer.Services
             var userProfileEntity = await UnitOfWork.UserProfileRepository.GetById(userProfile.UserId);
 
             var updatedEntity = UnitOfWork.UserProfileRepository.Update(Mapper.Map(userProfile, userProfileEntity));
-            
+
             await UnitOfWork.Save();
 
             return Mapper.Map<UserProfileModel>(updatedEntity);

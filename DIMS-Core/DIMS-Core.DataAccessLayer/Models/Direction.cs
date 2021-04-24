@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace DIMS_Core.DataAccessLayer.Models
 {
-    public partial class Direction
+    public class Direction
     {
         public Direction()
         {
@@ -11,7 +10,9 @@ namespace DIMS_Core.DataAccessLayer.Models
         }
 
         public int DirectionId { get; set; }
+
         public string Name { get; set; }
+
         public string Description { get; set; }
 
         public virtual ICollection<UserProfile> UserProfile { get; set; }

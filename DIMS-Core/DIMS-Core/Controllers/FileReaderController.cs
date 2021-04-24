@@ -12,13 +12,13 @@ namespace DIMS_Core.Controllers
     public class FileReaderController : BaseController
     {
         private readonly Dictionary<FileExtensions, string> _extensions =
-            new Dictionary<FileExtensions, string>
+            new()
             {
                 {
-                    FileExtensions.JSON, ".json"
+                    FileExtensions.Json, ".json"
                 },
                 {
-                    FileExtensions.XML, ".xml"
+                    FileExtensions.Xml, ".xml"
                 }
             };
 
@@ -45,13 +45,13 @@ namespace DIMS_Core.Controllers
             {
                 string output = null /*stream result*/;
 
-                if (file.Name.EndsWith(_extensions[FileExtensions.JSON]))
+                if (file.Name.EndsWith(_extensions[FileExtensions.Json]))
                 {
                     // TODO: Task # 8
                     // You need to implement JSON deserialization. You can use JsonConvert for example.
                 }
 
-                if (file.Name.EndsWith(_extensions[FileExtensions.XML]))
+                if (file.Name.EndsWith(_extensions[FileExtensions.Xml]))
                 {
                     // TODO: Task # 9
                     // You need to implement XML deserialization. You can use XmlSerializer for example.

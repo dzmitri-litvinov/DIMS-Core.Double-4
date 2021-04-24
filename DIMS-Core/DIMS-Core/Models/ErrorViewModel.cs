@@ -1,5 +1,3 @@
-using System;
-
 namespace DIMS_Core.Models
 {
     public class ErrorViewModel

@@ -65,7 +65,7 @@ namespace DIMS_Core.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        public Roles Role { get; set; }
+        public RoleType RoleType { get; set; }
 
         [DataType(DataType.PhoneNumber)]
         // mark this field as `Mobile` by using Json Attribute

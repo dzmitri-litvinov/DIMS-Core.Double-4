@@ -15,11 +15,13 @@ namespace DIMS_Core.Identity.Extensions
         {
             var config = new IdentityConfiguration();
 
+            // Add our Identity Database supporting.
             services.AddDbContext<IdentityContext>(options =>
                                                    {
                                                        options.UseSqlServer(config.ConnectionString);
                                                    });
 
+            // Add ASP.NET Identity provider which will use cookie auth key by default.
             services.AddIdentity<User, Role>(configs =>
                                              {
                                                  configs.User.RequireUniqueEmail = true;

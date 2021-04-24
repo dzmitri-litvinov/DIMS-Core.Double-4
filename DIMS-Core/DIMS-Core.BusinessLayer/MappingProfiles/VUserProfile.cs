@@ -8,7 +8,8 @@ namespace DIMS_Core.BusinessLayer.MappingProfiles
     {
         public VUserProfile()
         {
-            CreateMap<VUSerProfileEntity, VUserProfileModel>().ReverseMap();
+            CreateMap<VUSerProfileEntity, VUserProfileModel>()
+                .ReverseMap();
         }
     }
 }

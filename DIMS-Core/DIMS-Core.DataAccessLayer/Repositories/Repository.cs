@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore;
 namespace DIMS_Core.DataAccessLayer.Repositories
 {
     /// <summary>
-    /// TODO: Task #1
-    /// Implement all methods
-    /// Generic Repository
+    ///     TODO: Task #1
+    ///     Implement all methods
+    ///     Generic Repository
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     public abstract class Repository<TEntity> : IRepository<TEntity>

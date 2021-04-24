@@ -1,5 +1,4 @@
-﻿using System;
-namespace DIMS_Core.BusinessLayer.Models
+﻿namespace DIMS_Core.BusinessLayer.Models
 {
     public class DirectionModel
     {
@@ -11,7 +10,6 @@ namespace DIMS_Core.BusinessLayer.Models
 
         // TODO: Task # 16
         // You have to implement operator == by comparing Name
-
 
         // TODO: Task # 17
         // You have to implement operator != by comparing Name

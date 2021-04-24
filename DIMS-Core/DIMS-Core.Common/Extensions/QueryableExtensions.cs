@@ -17,10 +17,10 @@ namespace DIMS_Core.Common.Extensions
             {
                 switch (defaultDirection)
                 {
-                    case SortDirections.DESC:
+                    case SortDirections.Desc:
                         query = query.OrderByDescending(defaultSorting);
                         break;
-                    case SortDirections.ASC:
+                    case SortDirections.Asc:
                     default:
                         query = query.OrderBy(defaultSorting);
                         break;

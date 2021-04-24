@@ -1,12 +1,10 @@
-﻿using AutoMapper;
+﻿using System;
+using System.IO;
+using System.Threading.Tasks;
+using AutoMapper;
 using DIMS_Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DIMS_Core.Controllers
 {
@@ -33,19 +31,23 @@ namespace DIMS_Core.Controllers
             }
             catch (Exception exception)
             {
-                _logger.LogError(exception, null);
+                Logger.LogError(exception, null);
             }
             finally
             {
-                _logger.LogInformation("stream was closed");
+                Logger.LogInformation("stream was closed");
                 streamWriter?.Close();
             }
 
-            return Json(new { Message = "Data was successfully saved", StatusCode = 201 });
+            return Json(new
+                        {
+                            Message = "Data was successfully saved",
+                            StatusCode = 201
+                        });
         }
 
-
-        public async Task<IActionResult> TasksWriter(/*you have to use here TaskViewModel[]*/)
+        [HttpPost("tasks")]
+        public async Task<IActionResult> TasksWriter( /*you have to use here TaskViewModel[]*/)
         {
             StreamWriter streamWriter = null;
             const string fileName = "tasks.json";
@@ -55,18 +57,17 @@ namespace DIMS_Core.Controllers
 
             try
             {
-
             }
             catch (Exception)
             {
                 throw new NotImplementedException();
             }
-            finally
-            {
 
-            }
-
-            return Json(new { Message = "Data was successfully saved", StatusCode = 201 });
+            return Json(new
+                        {
+                            Message = "Data was successfully saved",
+                            StatusCode = 201
+                        });
         }
     }
 }

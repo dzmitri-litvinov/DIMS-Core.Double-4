@@ -36,7 +36,6 @@ namespace DIMS_Core.BusinessLayer.Models
         // TODO: Task # 14
         // You have to implement operator == by comparing First and Last names
 
-
         // TODO: Task # 15
         // You have to implement operator != by comparing First and Last names
     }

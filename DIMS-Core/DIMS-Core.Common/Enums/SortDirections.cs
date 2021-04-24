@@ -2,7 +2,7 @@
 {
     public enum SortDirections
     {
-        ASC,
-        DESC
+        Asc,
+        Desc
     }
 }

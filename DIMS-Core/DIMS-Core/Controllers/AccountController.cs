@@ -36,12 +36,10 @@ namespace DIMS_Core.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
-            {
-                ModelState.AddModelError("", "You entered incorrect email/password.");
 
-                return View(model);
-            }
+            ModelState.AddModelError("", "You entered incorrect email/password.");
+
+            return View(model);
         }
 
         [HttpGet("register")]
@@ -65,15 +63,13 @@ namespace DIMS_Core.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
-            {
-                foreach (var item in result.Errors)
-                {
-                    ModelState.AddModelError("", item.Description);
-                }
 
-                return View(model);
+            foreach (var item in result.Errors)
+            {
+                ModelState.AddModelError("", item.Description);
             }
+
+            return View(model);
         }
 
         [HttpGet("logout")]
