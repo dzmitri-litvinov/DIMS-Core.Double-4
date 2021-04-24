@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using DIMS_Core.BusinessLayer.Interfaces;
 using DIMS_Core.BusinessLayer.Models;
 using DIMS_Core.DataAccessLayer.Interfaces;
@@ -12,9 +13,7 @@ namespace DIMS_Core.BusinessLayer.Services
     public class VUserProfileService : IVUserProfileService
     {
         private readonly IMapper _mapper;
-
         private readonly IUnitOfWork _unitOfWork;
-        private bool _disposed;
 
         public VUserProfileService(IUnitOfWork unitOfWork, IMapper mapper)
         {
@@ -22,31 +21,16 @@ namespace DIMS_Core.BusinessLayer.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<VUserProfileModel>> GetAll()
+        public Task<VUserProfileModel[]> GetAll()
         {
-            var vUserProfileEntities = _unitOfWork.VUserProfileRepository.GetAll();
-
-            var vUserProfiles = _mapper.ProjectTo<VUserProfileModel>(vUserProfileEntities);
-
-            return await vUserProfiles.ToListAsync();
+            return _unitOfWork.VUserProfileRepository.GetAll()
+                              .ProjectTo<VUserProfileModel>(_mapper.ConfigurationProvider)
+                              .ToArrayAsync();
         }
 
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (_disposed)
-            {
-                return;
-            }
-
-            _unitOfWork.Dispose();
-
-            _disposed = true;
+            _unitOfWork?.Dispose();
         }
     }
 }

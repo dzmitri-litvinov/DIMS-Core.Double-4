@@ -1,11 +1,10 @@
+using System.Reflection;
 using DIMS_Core.BusinessLayer.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Reflection;
 
 namespace DIMS_Core
 {
@@ -18,6 +17,10 @@ namespace DIMS_Core
 
         public IConfiguration Configuration { get; }
 
+        /// <summary>
+        ///     Method for configuration and registrations your services.
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
@@ -25,6 +28,13 @@ namespace DIMS_Core
             services.AddCustomSolutionConfigs(Configuration, Assembly.GetExecutingAssembly());
         }
 
+        /// <summary>
+        ///     Method for middleware parts registration. You have to remember when you call method you specify order of these
+        ///     middleware in pipeline request.
+        ///     So order call is pretty important
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

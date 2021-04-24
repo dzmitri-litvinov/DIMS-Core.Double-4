@@ -18,5 +18,10 @@ namespace DIMS_Core.DataAccessLayer.Repositories
         {
             return _context.VUserProfiles.AsNoTracking();
         }
+
+        public void Dispose()
+        {
+            _context?.Dispose();
+        }
     }
 }

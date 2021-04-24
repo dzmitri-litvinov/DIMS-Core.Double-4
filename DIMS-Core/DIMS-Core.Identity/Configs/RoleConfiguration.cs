@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using DIMS_Core.Identity.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -12,16 +13,13 @@ namespace DIMS_Core.Identity.Configs
             builder.HasData(GetRolesData());
         }
 
-        private IEnumerable<Role> GetRolesData()
+        private static IEnumerable<Role> GetRolesData()
         {
-            for (var i = 0; i < IdentityConstants.RoleNames.Roles.Length; i++)
-            {
-                yield return new Role
-                             {
-                                 Id = i + 1,
-                                 Name = IdentityConstants.RoleNames.Roles[i]
-                             };
-            }
+            return IdentityConstants.RoleNames.Roles.Select((t, i) => new Role
+                                                                      {
+                                                                          Id = i + 1,
+                                                                          Name = t
+                                                                      });
         }
     }
 }

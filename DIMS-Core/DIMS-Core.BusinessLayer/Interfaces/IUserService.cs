@@ -10,7 +10,9 @@ namespace DIMS_Core.BusinessLayer.Interfaces
     public interface IUserService : IService
     {
         Task<SignInResult> SignInAsync(SignInModel model);
+
         Task SignOutAsync();
+
         Task<IdentityResult> SignUpAsync(SignUpModel model);
     }
 }

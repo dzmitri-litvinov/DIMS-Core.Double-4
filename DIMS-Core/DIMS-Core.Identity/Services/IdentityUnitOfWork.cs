@@ -1,51 +1,24 @@
 ﻿using DIMS_Core.Identity.Entities;
-using Microsoft.AspNetCore.Identity;
-using System;
 using DIMS_Core.Identity.Interfaces;
+using Microsoft.AspNetCore.Identity;
 
 namespace DIMS_Core.Identity.Services
 {
     internal class IdentityUnitOfWork : IIdentityUnitOfWork
     {
-        public UserManager<User> UserManager { get; }
-        public SignInManager<User> SignInManager { get; }
-
         public IdentityUnitOfWork(UserManager<User> userManager, SignInManager<User> signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
 
-        #region Disposable
+        public UserManager<User> UserManager { get; }
 
-        private bool _disposed;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (_disposed)
-            {
-                return;
-            }
-
-            if (disposing)
-            {
-                UserManager.Dispose();
-            }
-
-            _disposed = true;
-        }
-
-        ~IdentityUnitOfWork()
-        {
-            Dispose(false);
-        }
+        public SignInManager<User> SignInManager { get; }
 
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            UserManager?.Dispose();
         }
-
-        #endregion Disposable
     }
 }

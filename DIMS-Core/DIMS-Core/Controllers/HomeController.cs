@@ -20,7 +20,7 @@ namespace DIMS_Core.Controllers
         }
 
         /// <summary>
-        /// You can check look examples of logger events if you will run the action.
+        /// You can look examples of logger events if you will run the action.
         /// </summary>
         /// <returns></returns>
         public IActionResult CheckLogger()

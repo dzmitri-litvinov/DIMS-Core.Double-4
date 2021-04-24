@@ -1,8 +1,8 @@
-﻿using DIMS_Core.DataAccessLayer.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using DIMS_Core.DataAccessLayer.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace DIMS_Core.DataAccessLayer.Repositories
 {
@@ -12,16 +12,16 @@ namespace DIMS_Core.DataAccessLayer.Repositories
     /// Generic Repository
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
-    public abstract class Repository<TEntity> : IDisposable, IRepository<TEntity>
+    public abstract class Repository<TEntity> : IRepository<TEntity>
         where TEntity : class
     {
         private readonly DbContext _context;
-        protected readonly DbSet<TEntity> _set;
+        protected readonly DbSet<TEntity> Set;
 
         protected Repository(DbContext context)
         {
             _context = context;
-            _set = context.Set<TEntity>();
+            Set = context.Set<TEntity>();
         }
 
         public IQueryable<TEntity> GetAll()
@@ -56,7 +56,7 @@ namespace DIMS_Core.DataAccessLayer.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<TEntity> Create(TEntity entity)
+        public Task<TEntity> Create(TEntity entity)
         {
             throw new NotImplementedException();
         }
@@ -71,33 +71,18 @@ namespace DIMS_Core.DataAccessLayer.Repositories
             throw new NotImplementedException();
         }
 
-        #region Disposable
-
-        private bool _disposed;
-
-        protected virtual void Dispose(bool disposing)
+        public Task Save()
         {
-            if (_disposed)
-            {
-                return;
-            }
-
-            _context.Dispose();
-
-            _disposed = true;
+            throw new NotImplementedException();
         }
 
-        ~Repository()
-        {
-            Dispose(false);
-        }
-
+        /// <summary>
+        ///     In most cases this method is not important because our context will be disposed by IoC automatically.
+        ///     But if you don't know where will use your service better to specify this method (example, class library).
+        /// </summary>
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            _context?.Dispose();
         }
-
-        #endregion Disposable
     }
 }

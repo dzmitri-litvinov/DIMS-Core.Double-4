@@ -9,6 +9,10 @@ using MimeKit;
 
 namespace DIMS_Core.Mailer.Services
 {
+    /// <summary>
+    /// This class is for education goals. It helps you to understand simple way to send emails in .NET
+    /// But remember it is only one pretty simple way. There are many other approaches for this goal.
+    /// </summary>
     public class Sender : ISender
     {
         private const string LayoutHtml =

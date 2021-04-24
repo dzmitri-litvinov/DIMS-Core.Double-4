@@ -17,7 +17,7 @@ namespace DIMS_Core.BusinessLayer.Interfaces
 
         Task<UserProfileModel> GetById(int id);
 
-        Task<IEnumerable<UserProfileModel>> GetAll();
+        Task<UserProfileModel[]> GetAll();
 
         Task<UserProfileModel> Update(UserProfileModel userProfile);
 

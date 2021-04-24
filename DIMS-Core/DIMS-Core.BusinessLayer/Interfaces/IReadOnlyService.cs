@@ -1,13 +1,11 @@
-﻿using DIMS_Core.BusinessLayer.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
+using DIMS_Core.BusinessLayer.Models;
 
 namespace DIMS_Core.BusinessLayer.Interfaces
 {
     public interface IReadOnlyService : IDisposable
     {
-        Task<IEnumerable<VUserProfileModel>> GetAll();
+        Task<VUserProfileModel[]> GetAll();
     }
 }

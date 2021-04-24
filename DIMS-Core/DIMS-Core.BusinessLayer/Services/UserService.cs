@@ -14,28 +14,21 @@ namespace DIMS_Core.BusinessLayer.Services
         {
         }
 
-        public async Task<SignInResult> SignInAsync(SignInModel model)
+        public Task<SignInResult> SignInAsync(SignInModel model)
         {
-            var result = await _unitOfWork.SignInManager.PasswordSignInAsync(model.Email,
-                                                                             model.Password,
-                                                                             model.RememberMe,
-                                                                             false);
-
-            return result;
+            return UnitOfWork.SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
         }
 
-        public async Task<IdentityResult> SignUpAsync(SignUpModel model)
+        public Task<IdentityResult> SignUpAsync(SignUpModel model)
         {
-            var mappedEntity = _mapper.Map<User>(model);
+            var mappedEntity = Mapper.Map<User>(model);
 
-            var result = await _unitOfWork.UserManager.CreateAsync(mappedEntity, model.Password);
-
-            return result;
+            return UnitOfWork.UserManager.CreateAsync(mappedEntity, model.Password);
         }
 
         public Task SignOutAsync()
         {
-            return _unitOfWork.SignInManager.SignOutAsync();
+            return UnitOfWork.SignInManager.SignOutAsync();
         }
     }
 }
