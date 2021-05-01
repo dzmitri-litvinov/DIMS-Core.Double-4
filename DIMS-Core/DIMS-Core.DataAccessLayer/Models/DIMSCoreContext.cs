@@ -1,15 +1,14 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace DIMS_Core.DataAccessLayer.Models
 {
-    public class DIMSCoreContext : DbContext
+    public class DimsCoreContext : DbContext
     {
-        public DIMSCoreContext()
+        public DimsCoreContext()
         {
         }
 
-        public DIMSCoreContext(DbContextOptions<DIMSCoreContext> options)
+        public DimsCoreContext(DbContextOptions<DimsCoreContext> options)
             : base(options)
         {
         }

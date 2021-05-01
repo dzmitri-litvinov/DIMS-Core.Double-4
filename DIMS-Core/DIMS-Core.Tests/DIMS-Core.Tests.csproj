@@ -11,11 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.5" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
     <PackageReference Include="xunit" Version="2.4.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DIMS-Core.DataAccessLayer\DIMS-Core.DataAccessLayer.csproj" />
     <ProjectReference Include="..\DIMS-Core.Mailer\DIMS-Core.Mailer.csproj" />
   </ItemGroup>
 
