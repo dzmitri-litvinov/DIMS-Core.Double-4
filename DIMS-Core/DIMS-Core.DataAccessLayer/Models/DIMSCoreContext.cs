@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-
-#nullable disable
-=======
 ﻿using Microsoft.EntityFrameworkCore;
->>>>>>> parent of af51969 (Add Entities using scaffolding)
 
 namespace DIMS_Core.DataAccessLayer.Models
 {
@@ -25,14 +17,7 @@ namespace DIMS_Core.DataAccessLayer.Models
 
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
 
-<<<<<<< HEAD
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            
-        }
-=======
         public virtual DbSet<VUserProfile> VUserProfiles { get; set; }
->>>>>>> parent of af51969 (Add Entities using scaffolding)
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
