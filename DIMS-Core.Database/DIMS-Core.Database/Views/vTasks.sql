@@ -1,8 +1,8 @@
 CREATE VIEW [dbo].[vTasks]
 AS
-SELECT ToDoTasks.TaskId,
-        ToDoTasks.Name,
-        ToDoTasks.Description,
-        ToDoTasks.StartDate,
-        ToDoTasks.DeadlineDate
-FROM [ToDoTasks]
+SELECT Tasks.TaskId,
+        Tasks.Name,
+        Tasks.Description,
+        Tasks.StartDate,
+        Tasks.DeadlineDate
+FROM [Tasks]
