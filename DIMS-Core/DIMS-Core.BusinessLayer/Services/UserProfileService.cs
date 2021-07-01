@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using AliasThreading = System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using DIMS_Core.BusinessLayer.Interfaces;
@@ -15,7 +15,7 @@ namespace DIMS_Core.BusinessLayer.Services
         {
         }
 
-        public Task<UserProfileModel[]> GetAll()
+        public AliasThreading.Task<UserProfileModel[]> GetAll()
         {
             return UnitOfWork.UserProfileRepository
                              .GetAll()
@@ -23,14 +23,14 @@ namespace DIMS_Core.BusinessLayer.Services
                              .ToArrayAsync();
         }
 
-        public async Task<UserProfileModel> GetById(int id)
+        public async AliasThreading.Task<UserProfileModel> GetById(int id)
         {
             var userProfileEntity = await UnitOfWork.UserProfileRepository.GetById(id);
 
             return Mapper.Map<UserProfileModel>(userProfileEntity);
         }
 
-        public async Task<UserProfileModel> Update(UserProfileModel userProfile)
+        public async AliasThreading.Task<UserProfileModel> Update(UserProfileModel userProfile)
         {
             var userProfileEntity = await UnitOfWork.UserProfileRepository.GetById(userProfile.UserId);
 
@@ -41,7 +41,7 @@ namespace DIMS_Core.BusinessLayer.Services
             return Mapper.Map<UserProfileModel>(updatedEntity);
         }
 
-        public async Task<UserProfileModel> Create(UserProfileModel userProfileModel)
+        public async AliasThreading.Task<UserProfileModel> Create(UserProfileModel userProfileModel)
         {
             var userProfileEntity = Mapper.Map<UserProfile>(userProfileModel);
 
@@ -51,7 +51,7 @@ namespace DIMS_Core.BusinessLayer.Services
             return Mapper.Map<UserProfileModel>(createdEntity);
         }
 
-        public async Task Delete(int id)
+        public async AliasThreading.Task Delete(int id)
         {
             await UnitOfWork.UserProfileRepository.Delete(id);
             await UnitOfWork.Save();
