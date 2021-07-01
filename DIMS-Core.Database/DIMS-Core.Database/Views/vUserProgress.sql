@@ -4,10 +4,10 @@ SELECT	UserTasks.UserId,
 		UserTasks.TaskId,
 		TaskTracks.TaskTrackId,
 		UserProfiles.FirstName AS UserName,
-		Tasks.Name AS TaskName,
+		ToDoTasks.Name AS TaskName,
 		TaskTracks.TrackNote,
 		TaskTracks.TrackDate
 FROM [UserTasks]
 	INNER JOIN [TaskTracks] ON UserTasks.UserTaskId = TaskTracks.UserTaskId
-	INNER JOIN [Tasks] ON UserTasks.TaskId = Tasks.TaskId
+	INNER JOIN [ToDoTasks] ON UserTasks.TaskId = ToDoTasks.TaskId
 	INNER JOIN [UserProfiles] ON UserTasks.UserId = UserProfiles.UserId
