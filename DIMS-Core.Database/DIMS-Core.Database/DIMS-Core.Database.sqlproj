@@ -37,7 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>D:\DevInc\DIMS\DB\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <DebugSymbols>true</DebugSymbols>
@@ -79,7 +79,7 @@
     <Build Include="Views\vUserProgress.sql" />
     <Build Include="Views\vUserTasks.sql" />
     <Build Include="Views\vUserTracks.sql" />
-    <Build Include="SeedData\TaskStatesSeedData.sql" />
+    <None Include="SeedData\TaskStatesSeedData.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SeedData\UserProfilesSeedData.sql" />
