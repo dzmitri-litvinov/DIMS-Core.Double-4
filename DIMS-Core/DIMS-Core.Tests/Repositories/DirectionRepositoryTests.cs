@@ -1,5 +1,5 @@
 using System;
-using AliasThreading = System.Threading.Tasks;
+using AliasThreadingTask = System.Threading.Tasks.Task;
 using DIMS_Core.DataAccessLayer.Models;
 using DIMS_Core.Tests.Repositories.Fixtures;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +24,7 @@ namespace DIMS_Core.Tests.Repositories
         [Fact]
         // Note: GetAll will work always in our case. It can be thrown into EF Core.
         // But it is implementation details of EF Core so we mustn't test these cases.
-        public async AliasThreading.Task GetAll_OK()
+        public async AliasThreadingTask GetAll_OK()
         {
             // Act
             var result = await _fixture.Repository
@@ -37,7 +37,7 @@ namespace DIMS_Core.Tests.Repositories
         }
 
         [Fact]
-        public async AliasThreading.Task GetById_OK()
+        public async AliasThreadingTask GetById_OK()
         {
             // Act
             var result = await _fixture.Repository.GetById(_fixture.DirectionId);
@@ -50,7 +50,7 @@ namespace DIMS_Core.Tests.Repositories
         }
 
         [Fact]
-        public async AliasThreading.Task GetById_EmptyId_Fail()
+        public async AliasThreadingTask GetById_EmptyId_Fail()
         {
             // Arrange
             const int id = 0;
@@ -60,7 +60,7 @@ namespace DIMS_Core.Tests.Repositories
         }
 
         [Fact]
-        public async AliasThreading.Task GetById_NotExistDirection_Fail()
+        public async AliasThreadingTask GetById_NotExistDirection_Fail()
         {
             // Arrange
             const int id = int.MaxValue;
@@ -70,7 +70,7 @@ namespace DIMS_Core.Tests.Repositories
         }
 
         [Fact]
-        public async AliasThreading.Task Create_OK()
+        public async AliasThreadingTask Create_OK()
         {
             // Arrange
             var entity = new Direction
@@ -91,14 +91,14 @@ namespace DIMS_Core.Tests.Repositories
         }
 
         [Fact]
-        public async AliasThreading.Task Create_EmptyEntity_Fail()
+        public async AliasThreadingTask Create_EmptyEntity_Fail()
         {
             // Arrange Act, Assert
             await Assert.ThrowsAsync<ArgumentNullException>(() => _fixture.Repository.Create(null));
         }
 
         [Fact]
-        public async AliasThreading.Task Update_OK()
+        public async AliasThreadingTask Update_OK()
         {
             // Arrange
             var entity = new Direction
@@ -127,7 +127,7 @@ namespace DIMS_Core.Tests.Repositories
         }
 
         [Fact]
-        public async AliasThreading.Task Delete_OK()
+        public async AliasThreadingTask Delete_OK()
         {
             // Act
             await _fixture.Repository.Delete(_fixture.DirectionId);
@@ -139,7 +139,7 @@ namespace DIMS_Core.Tests.Repositories
         }
 
         [Fact]
-        public async AliasThreading.Task Delete_EmptyId_Fail()
+        public async AliasThreadingTask Delete_EmptyId_Fail()
         {
             // Arrange
             const int id = 0;

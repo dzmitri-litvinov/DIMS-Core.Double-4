@@ -1,4 +1,4 @@
-using AliasThreading = System.Threading.Tasks;
+using AliasThreadingTask = System.Threading.Tasks.Task;
 using DIMS_Core.DataAccessLayer.Interfaces;
 using DIMS_Core.DataAccessLayer.Models;
 
@@ -38,7 +38,7 @@ namespace DIMS_Core.DataAccessLayer.Repositories
         ///     Repository.
         /// </summary>
         /// <returns></returns>
-        public AliasThreading.Task Save()
+        public AliasThreadingTask Save()
         {
             return _context.SaveChangesAsync();
         }
