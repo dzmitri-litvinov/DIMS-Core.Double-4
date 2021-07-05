@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using DIMS_Core.DataAccessLayer.Interfaces;
@@ -26,10 +26,10 @@ namespace DIMS_Core.DataAccessLayer.Repositories
 
         public IQueryable<TEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return Set;
         }
 
-        public Task<TEntity> GetById(int id)
+        public async Task<TEntity> GetById(int id)
         {
             if (id == 0)
             {
@@ -40,7 +40,9 @@ namespace DIMS_Core.DataAccessLayer.Repositories
             }
 
             // TODO: type must be adjusted to entity type accordingly
-            object objectFromDB = null;
+            //object objectFromDB = null;
+
+            var objectFromDB = await Set.FindAsync(id);
 
             if (objectFromDB is null)
             {
@@ -53,27 +55,32 @@ namespace DIMS_Core.DataAccessLayer.Repositories
             // RECOMMEND: It's better to create a helper static class for errors instead of throwing them
             // Ask us if you stucked and it looks ridiculous for you
 
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+
+            return objectFromDB;
         }
 
-        public Task<TEntity> Create(TEntity entity)
+        public async Task<TEntity> Create(TEntity entity)
         {
-            throw new NotImplementedException();
+            var entityReturned = await Set.AddAsync(entity);
+            return entityReturned.Entity;
         }
 
         public TEntity Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            var entityUpdated = Set.Update(entity);
+            return entityUpdated.Entity;
         }
 
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var entity = await GetById(id);
+            Set.Remove(entity);
         }
 
-        public Task Save()
+        public async Task Save()
         {
-            throw new NotImplementedException();
+            await _context.SaveChangesAsync();
         }
 
         /// <summary>
