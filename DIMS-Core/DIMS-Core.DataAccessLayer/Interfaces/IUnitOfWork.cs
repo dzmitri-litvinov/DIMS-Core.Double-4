@@ -1,6 +1,7 @@
 using System;
-using AliasThreadingTask = System.Threading.Tasks.Task;
 using DIMS_Core.DataAccessLayer.Models;
+using TaskEntity = DIMS_Core.DataAccessLayer.Models.Task;
+using Task = System.Threading.Tasks.Task;
 
 namespace DIMS_Core.DataAccessLayer.Interfaces
 {
@@ -12,6 +13,6 @@ namespace DIMS_Core.DataAccessLayer.Interfaces
 
         IReadOnlyRepository<VUserProfile> VUserProfileRepository { get; }
 
-        AliasThreadingTask Save();
+        Task Save();
     }
 }

@@ -1,6 +1,7 @@
-using AliasThreadingTask = System.Threading.Tasks.Task;
 using DIMS_Core.DataAccessLayer.Interfaces;
 using DIMS_Core.DataAccessLayer.Models;
+using TaskEntity = DIMS_Core.DataAccessLayer.Models.Task;
+using Task = System.Threading.Tasks.Task;
 
 namespace DIMS_Core.DataAccessLayer.Repositories
 {
@@ -38,7 +39,7 @@ namespace DIMS_Core.DataAccessLayer.Repositories
         ///     Repository.
         /// </summary>
         /// <returns></returns>
-        public AliasThreadingTask Save()
+        public Task Save()
         {
             return _context.SaveChangesAsync();
         }

@@ -1,11 +1,13 @@
 using System.Collections.Generic;
-using AliasThreading = System.Threading.Tasks;
+using System.Threading.Tasks;
 using AutoMapper;
 using DIMS_Core.BusinessLayer.Interfaces;
 using DIMS_Core.BusinessLayer.Models;
 using DIMS_Core.DataAccessLayer.Interfaces;
 using DIMS_Core.DataAccessLayer.Models;
 using Microsoft.EntityFrameworkCore;
+using TaskEntity = DIMS_Core.DataAccessLayer.Models.Task;
+using Task = System.Threading.Tasks.Task;
 
 namespace DIMS_Core.BusinessLayer.Services
 {
@@ -15,7 +17,7 @@ namespace DIMS_Core.BusinessLayer.Services
         {
         }
 
-        public async AliasThreading.Task<IEnumerable<DirectionModel>> GetAll()
+        public async Task<IEnumerable<DirectionModel>> GetAll()
         {
             var directions = UnitOfWork.DirectionRepository.GetAll();
 
@@ -23,14 +25,14 @@ namespace DIMS_Core.BusinessLayer.Services
                                .ToListAsync();
         }
 
-        public async AliasThreading.Task<DirectionModel> GetById(int id)
+        public async Task<DirectionModel> GetById(int id)
         {
             var directionEntity = await UnitOfWork.DirectionRepository.GetById(id);
 
             return Mapper.Map<DirectionModel>(directionEntity);
         }
 
-        public async AliasThreading.Task<DirectionModel> Update(DirectionModel direction)
+        public async Task<DirectionModel> Update(DirectionModel direction)
         {
             var directionEntity = await UnitOfWork.DirectionRepository.GetById(direction.DirectionId);
 
@@ -40,7 +42,7 @@ namespace DIMS_Core.BusinessLayer.Services
             return Mapper.Map<DirectionModel>(updatedEntity);
         }
 
-        public async AliasThreading.Task<DirectionModel> Create(DirectionModel directionModel)
+        public async Task<DirectionModel> Create(DirectionModel directionModel)
         {
             var directionEntity = Mapper.Map<Direction>(directionModel);
 
@@ -50,7 +52,7 @@ namespace DIMS_Core.BusinessLayer.Services
             return Mapper.Map<DirectionModel>(createdEntity);
         }
 
-        public async AliasThreading.Task Delete(int id)
+        public async Task Delete(int id)
         {
             await UnitOfWork.DirectionRepository.Delete(id);
             await UnitOfWork.Save();

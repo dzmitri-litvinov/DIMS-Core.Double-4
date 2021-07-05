@@ -1,4 +1,4 @@
-using AliasThreading = System.Threading.Tasks;
+using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using DIMS_Core.BusinessLayer.Interfaces;
@@ -6,6 +6,8 @@ using DIMS_Core.BusinessLayer.Models;
 using DIMS_Core.DataAccessLayer.Interfaces;
 using DIMS_Core.DataAccessLayer.Models;
 using Microsoft.EntityFrameworkCore;
+using TaskEntity = DIMS_Core.DataAccessLayer.Models.Task;
+using Task = System.Threading.Tasks.Task;
 
 namespace DIMS_Core.BusinessLayer.Services
 {
@@ -15,7 +17,7 @@ namespace DIMS_Core.BusinessLayer.Services
         {
         }
 
-        public AliasThreading.Task<UserProfileModel[]> GetAll()
+        public Task<UserProfileModel[]> GetAll()
         {
             return UnitOfWork.UserProfileRepository
                              .GetAll()
@@ -23,14 +25,14 @@ namespace DIMS_Core.BusinessLayer.Services
                              .ToArrayAsync();
         }
 
-        public async AliasThreading.Task<UserProfileModel> GetById(int id)
+        public async Task<UserProfileModel> GetById(int id)
         {
             var userProfileEntity = await UnitOfWork.UserProfileRepository.GetById(id);
 
             return Mapper.Map<UserProfileModel>(userProfileEntity);
         }
 
-        public async AliasThreading.Task<UserProfileModel> Update(UserProfileModel userProfile)
+        public async Task<UserProfileModel> Update(UserProfileModel userProfile)
         {
             var userProfileEntity = await UnitOfWork.UserProfileRepository.GetById(userProfile.UserId);
 
@@ -41,7 +43,7 @@ namespace DIMS_Core.BusinessLayer.Services
             return Mapper.Map<UserProfileModel>(updatedEntity);
         }
 
-        public async AliasThreading.Task<UserProfileModel> Create(UserProfileModel userProfileModel)
+        public async Task<UserProfileModel> Create(UserProfileModel userProfileModel)
         {
             var userProfileEntity = Mapper.Map<UserProfile>(userProfileModel);
 
@@ -51,7 +53,7 @@ namespace DIMS_Core.BusinessLayer.Services
             return Mapper.Map<UserProfileModel>(createdEntity);
         }
 
-        public async AliasThreading.Task Delete(int id)
+        public async Task Delete(int id)
         {
             await UnitOfWork.UserProfileRepository.Delete(id);
             await UnitOfWork.Save();
