@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DIMS_Core.DataAccessLayer.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using DIMS_Core.DataAccessLayer.Extensions;
 
 namespace DIMS_Core.DataAccessLayer.Repositories
 {
@@ -31,31 +32,10 @@ namespace DIMS_Core.DataAccessLayer.Repositories
 
         public async Task<TEntity> GetById(int id)
         {
-            if (id == 0)
-            {
-                // TODO: Task #3
-                // Create custom exception for invalid arguments
-                // based on abstract class BaseException
-                // throw new AnyException(string paramName);
-            }
-
-            // TODO: type must be adjusted to entity type accordingly
-            //object objectFromDB = null;
+            id.CheckIfZero();
 
             var objectFromDB = await Set.FindAsync(id);
-
-            if (objectFromDB is null)
-            {
-                // TODO: Task #4
-                // Create custom exception for non existed object in database
-                // based on abstract class BaseException
-                // throw new AnyException(string methodName, string message);
-            }
-
-            // RECOMMEND: It's better to create a helper static class for errors instead of throwing them
-            // Ask us if you stucked and it looks ridiculous for you
-
-            //throw new NotImplementedException();
+            objectFromDB.CheckIfNullObject("Repository.GetById method");
 
             return objectFromDB;
         }
